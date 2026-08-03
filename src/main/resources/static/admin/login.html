@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="tr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Voska Admin · Giriş</title><link rel="stylesheet" href="/css/admin.css"></head>
+<body class="login-page">
+  <main class="login-box">
+    <a class="admin-brand" href="/">VOSKA<span>.</span></a>
+    <p class="admin-kicker">SECURE ACCESS</p><h1>YÖNETİM<br>PANELİ</h1><p class="login-copy">Projeleri ve site bağlantılarını yönetmek için giriş yap.</p>
+    <p id="login-error" class="notice error" hidden>Kullanıcı adı veya parola hatalı.</p>
+    <form method="post" action="/login" class="admin-form">
+      <label>Kullanıcı adı<input name="username" autocomplete="username" required autofocus></label>
+      <label>Parola<input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="gold-button" type="submit">GİRİŞ YAP <span>→</span></button>
+    </form>
+    <a class="back-link" href="/">← Siteye dön</a>
+  </main>
+  <script>document.querySelector('#login-error').hidden=!new URLSearchParams(location.search).has('error');</script>
+</body></html>

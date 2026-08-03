@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Voska Admin</title><link rel="stylesheet" href="/css/admin.css"><script defer src="/js/admin.js"></script></head>
+<body class="admin-page">
+  <aside class="admin-sidebar"><a class="admin-brand" href="/">VOSKA<span>.</span></a><nav><button class="nav-button active" data-view="projects">Projeler</button><button class="nav-button" data-view="profile">Bağlantılar</button></nav><div class="sidebar-bottom"><span>ADMIN PANEL</span><form method="post" action="/logout"><button type="submit">Çıkış yap</button></form></div></aside>
+  <main class="admin-main">
+    <header class="admin-top"><button id="mobile-nav" type="button">MENÜ</button><p>Voska / <span id="view-title">Projeler</span></p><a href="/" target="_blank">Siteyi görüntüle ↗</a></header>
+    <section id="projects-view" class="admin-view active">
+      <div class="admin-heading"><div><p class="admin-kicker">PORTFOLIO CONTENT</p><h1>PROJELER</h1><p>Yayındaki ve taslak projeleri yönet.</p></div><button id="new-project" class="gold-button">+ YENİ PROJE</button></div>
+      <div class="metrics"><div><span>TOPLAM</span><strong id="total-count">0</strong></div><div><span>YAYINDA</span><strong id="published-count">0</strong></div><div><span>TASLAK</span><strong id="draft-count">0</strong></div></div>
+      <div class="table-head"><h2>PROJE LİSTESİ</h2><div><button class="filter active" data-filter="ALL">Tümü</button><button class="filter" data-filter="PUBLISHED">Yayında</button><button class="filter" data-filter="DRAFT">Taslak</button></div></div>
+      <div id="project-table" class="project-table"><p class="empty">Projeler yükleniyor…</p></div>
+    </section>
+    <section id="profile-view" class="admin-view">
+      <div class="admin-heading"><div><p class="admin-kicker">SITE SETTINGS</p><h1>BAĞLANTILAR</h1><p>Public sitedeki sosyal medya ve iletişim butonlarını yönet.</p></div></div>
+      <form id="profile-form" class="settings-form">
+        <label>GitHub URL<input name="githubUrl" type="url"></label><label>LinkedIn URL<input name="linkedinUrl" type="url"></label>
+        <label>Discord URL<input name="discordUrl" type="url"></label><label>Kişisel site URL<input name="websiteUrl" type="url"></label>
+        <label>X URL<input name="xUrl" type="url"></label><label>Instagram URL<input name="instagramUrl" type="url"></label>
+        <label class="full">Özgeçmiş URL<input name="resumeUrl" type="url"></label><label class="full">İletişim e-postası<input name="contactEmail" type="email"></label>
+        <div class="full form-action"><button class="gold-button" type="submit">DEĞİŞİKLİKLERİ KAYDET</button><span id="profile-status"></span></div>
+      </form>
+    </section>
+  </main>
+
+  <dialog id="project-dialog">
+    <form id="project-form" class="dialog-form"><div class="dialog-head"><div><p class="admin-kicker">PROJECT EDITOR</p><h2 id="dialog-title">YENİ PROJE</h2></div><button class="close-dialog" type="button" aria-label="Kapat">×</button></div>
+      <input name="id" type="hidden"><label>Başlık<input name="title" required maxlength="150"></label><label>Özet<textarea name="summary" required rows="3" maxlength="500"></textarea></label><label>Açıklama<textarea name="description" rows="7"></textarea></label>
+      <div class="form-grid"><label>GitHub URL<input name="githubUrl" type="url"></label><label>Canlı site URL<input name="liveUrl" type="url"></label><label>Durum<select name="status"><option value="DRAFT">Taslak</option><option value="PUBLISHED">Yayında</option></select></label><label class="check"><input name="featured" type="checkbox"> Öne çıkan proje</label></div>
+      <section id="image-manager" hidden><div class="image-title"><h3>PROJE GÖRSELLERİ</h3><span>İlk olarak projeyi kaydetmelisiniz.</span></div><div id="image-list" class="image-list"></div><div class="image-upload"><input id="image-file" type="file" accept="image/*"><input id="image-alt" placeholder="Alt metin"><label class="check"><input id="image-cover" type="checkbox"> Kapak</label><button id="upload-image" class="outline-button" type="button">GÖRSEL YÜKLE</button></div></section>
+      <div class="dialog-actions"><span id="project-status"></span><button class="gold-button" type="submit">PROJEYİ KAYDET</button></div>
+    </form>
+  </dialog>
+</body></html>
