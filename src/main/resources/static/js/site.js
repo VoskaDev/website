@@ -39,7 +39,7 @@ function createProjectGallery(project) {
             <img src="${escapeHtml(image.imageUrl)}" alt="">
             <span>${index + 1}</span>
           </button>`).join('')}
-       </div><p class="gallery-count"><span>1</span> / ${thumbnailImages.length}${images.length > 4 ? ` · <a href="/projects/${encodeURIComponent(project.slug)}">+${images.length - 4} görsel</a>` : ''}</p>`
+       </div><p class="gallery-count"><span>1</span> / ${thumbnailImages.length}${images.length > 4 ? ` · <a href="/project.html?slug=${encodeURIComponent(project.slug)}">+${images.length - 4} görsel</a>` : ''}</p>`
     : '';
 
   return `<div class="project-media">
@@ -69,13 +69,13 @@ async function loadProjects() {
         ${createProjectGallery(project)}
         <div class="project-content">
           <p class="eyebrow">${project.featured ? 'FEATURED PROJECT' : 'PROJECT'}</p>
-          <h3><a class="project-title-link" href="/projects/${encodeURIComponent(project.slug)}">${escapeHtml(project.title)}</a></h3>
+          <h3><a class="project-title-link" href="/project.html?slug=${encodeURIComponent(project.slug)}">${escapeHtml(project.title)}</a></h3>
           <p>${escapeHtml(project.summary)}</p>
           <div class="project-meta">
             <div><span>Yayın tarihi</span><span>${new Date(project.createdAt).getFullYear()}</span></div>
             <div><span>Durum</span><span>Yayında</span></div>
           </div>
-          <div class="project-links"><a class="text-link" href="/projects/${encodeURIComponent(project.slug)}">DETAYLARI GÖR →</a>${links}</div>
+          <div class="project-links"><a class="text-link" href="/project.html?slug=${encodeURIComponent(project.slug)}">DETAYLARI GÖR →</a>${links}</div>
         </div>
       </article>`;
     }).join('');
