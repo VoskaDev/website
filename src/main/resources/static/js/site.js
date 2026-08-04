@@ -28,9 +28,10 @@ function createProjectGallery(project) {
   }
 
   const cover = images[0];
-  const thumbnails = images.length > 1
+  const thumbnailImages = images.slice(0, 4);
+  const thumbnails = thumbnailImages.length > 1
     ? `<div class="project-thumbnails" aria-label="${escapeHtml(project.title)} görsel galerisi">
-        ${images.map((image, index) => `
+        ${thumbnailImages.map((image, index) => `
           <button type="button" class="project-thumbnail ${index === 0 ? 'active' : ''}"
                   data-gallery-src="${escapeHtml(image.imageUrl)}"
                   data-gallery-alt="${escapeHtml(image.altText || project.title)}"
@@ -38,7 +39,7 @@ function createProjectGallery(project) {
             <img src="${escapeHtml(image.imageUrl)}" alt="">
             <span>${index + 1}</span>
           </button>`).join('')}
-       </div><p class="gallery-count"><span>1</span> / ${images.length}</p>`
+       </div><p class="gallery-count"><span>1</span> / ${thumbnailImages.length}${images.length > 4 ? ` · <a href="/projects/${encodeURIComponent(project.slug)}">+${images.length - 4} görsel</a>` : ''}</p>`
     : '';
 
   return `<div class="project-media">
@@ -68,13 +69,13 @@ async function loadProjects() {
         ${createProjectGallery(project)}
         <div class="project-content">
           <p class="eyebrow">${project.featured ? 'FEATURED PROJECT' : 'PROJECT'}</p>
-          <h3>${escapeHtml(project.title)}</h3>
+          <h3><a class="project-title-link" href="/projects/${encodeURIComponent(project.slug)}">${escapeHtml(project.title)}</a></h3>
           <p>${escapeHtml(project.summary)}</p>
           <div class="project-meta">
             <div><span>Yayın tarihi</span><span>${new Date(project.createdAt).getFullYear()}</span></div>
             <div><span>Durum</span><span>Yayında</span></div>
           </div>
-          <div class="project-links">${links}</div>
+          <div class="project-links"><a class="text-link" href="/projects/${encodeURIComponent(project.slug)}">DETAYLARI GÖR →</a>${links}</div>
         </div>
       </article>`;
     }).join('');
